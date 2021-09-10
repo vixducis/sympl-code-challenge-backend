@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProjectAssignmentController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -17,3 +18,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/users', UserController::class);
 Route::resource('/projects', ProjectController::class);
+Route::post('/users/{userid}/project/{projectid}', [ProjectAssignmentController::class, 'store']);
+Route::delete('/users/{userid}/project/{projectid}', [ProjectAssignmentController::class, 'destroy']);

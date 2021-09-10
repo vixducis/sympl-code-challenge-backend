@@ -14,9 +14,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $possibleFilters = ['mail', 'role', 'name'];
+        $usedFilters = array_intersect($possibleFilters, array_keys($request->all()));
+        $users = count($usedFilters) > 0
+            ? User::where($request->all($usedFilters))->get()
+            : User::all();
         return UserResource::collection($users);
     }
 
