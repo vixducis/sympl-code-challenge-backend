@@ -24,7 +24,9 @@ class ProjectAssignmentController extends Controller
                 'project_id' => $projectid
             ]);
         } catch(QueryException $e) {
-            return response()->json(null, Response::HTTP_UNPROCESSABLE_ENTITY);
+            return response()->json([
+                'error' => 'The project is already assigned to the user.'
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         return new ProjectAssignmentResource($assignment);
     }

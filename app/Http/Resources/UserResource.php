@@ -26,7 +26,7 @@ class UserResource extends JsonResource
             'role' => $this->role,
             'relationships' => [
                 'projects' => $projectAssignments->map(
-                    fn(ProjectAssignment $assignment) => $assignment->id
+                    fn(ProjectAssignment $assignment) => (int)$assignment->project_id
                 )->all()
             ]
         ];
