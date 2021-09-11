@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return UserCollection<UserResource>
      */
     public function index(Request $request)
     {
@@ -21,7 +22,7 @@ class UserController extends Controller
         $users = count($usedFilters) > 0
             ? User::where($request->all($usedFilters))->get()
             : User::all();
-        return UserResource::collection($users);
+        return new UserCollection($users);
     }
 
     /**
@@ -64,7 +65,7 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function destroy(User $user)
     {

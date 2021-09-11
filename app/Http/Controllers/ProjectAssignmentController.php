@@ -14,7 +14,7 @@ class ProjectAssignmentController extends Controller
      *
      * @param  int $userid
      * @param  int $projectid
-     * @return \Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\Response|ProjectAssignmentResource
      */
     public function store(int $userid, int $projectid)
     {
@@ -36,7 +36,7 @@ class ProjectAssignmentController extends Controller
      *
      * @param  int $userid
      * @param  int $projectid
-     * @return \Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function destroy(int $userid, int $projectid)
     {
