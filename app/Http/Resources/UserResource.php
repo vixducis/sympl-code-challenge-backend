@@ -3,9 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Project;
-use App\Models\ProjectAssignment;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Database\Eloquent\Collection;
 
 class UserResource extends JsonResource
 {

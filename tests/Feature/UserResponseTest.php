@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\Project;
-use App\Models\ProjectAssignment;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -31,10 +30,7 @@ class UserResponse extends TestCase
             'color' => 'red'
         ]);
 
-        ProjectAssignment::create([
-            'user_id' => $user->id,
-            'project_id' => $project->id
-        ]);
+        $user->projects()->attach($project->id);
 
         $this->get('/users')->assertExactJson(['data' => [[
             'id' => $user->id,

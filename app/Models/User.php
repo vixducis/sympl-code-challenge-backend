@@ -11,16 +11,14 @@ class User extends Model
 
     /**
      * Returns the projects assigned to the user.
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function projects() 
     {
-        return $this->hasManyThrough(
+        return $this->belongsToMany(
             Project::class, 
-            ProjectAssignment::class,
+            'project_assignments',
             'user_id',
-            'id',
-            'id',
             'project_id'
         );
     }
