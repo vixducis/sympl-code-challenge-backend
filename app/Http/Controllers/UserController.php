@@ -18,6 +18,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $usedFilters = $request->only(['mail', 'role', 'name']);
+        /** @var array<string,string> $usedFilters */
         $users = count($usedFilters) > 0
             ? User::where($usedFilters)->get()
             : User::all();
